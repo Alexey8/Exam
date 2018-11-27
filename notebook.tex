@@ -1,0 +1,1108 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Gender Recognition by Voice}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\end{Verbatim}
+
+
+    \subsection{1. Get dataset}\label{get-dataset}
+
+    This database was created to identify a voice as male or female, based
+upon acoustic properties of the voice and speech. The dataset consists
+of 3,168 recorded voice samples, collected from male and female
+speakers. The voice samples are pre-processed by acoustic analysis in R
+using the seewave and tuneR packages, with an analyzed frequency range
+of 0hz-280hz (human vocal range)
+
+    The following acoustic properties of each voice are measured and
+included within the CSV:
+
+\(\cdot\)mean frequency (in kHz) \(\cdot\)sd: standard deviation of
+frequency \(\cdot\)median: median frequency (in kHz) \(\cdot\)Q25: first
+quantile (in kHz) \(\cdot\)Q75: third quantile (in kHz) \(\cdot\)IQR:
+interquantile range (in kHz) \(\cdot\)skew: skewness (see note in
+specprop description) \(\cdot\)kurt: kurtosis (see note in specprop
+description) \(\cdot\)sp.ent: spectral entropy \(\cdot\)sfm: spectral
+flatness \(\cdot\)mode: mode frequency \(\cdot\)centroid: frequency
+centroid (see specprop) \(\cdot\)peakf: peak frequency (frequency with
+highest energy) \(\cdot\)meanfun: average of fundamental frequency
+measured across acoustic signal \(\cdot\)minfun: minimum fundamental
+frequency measured across acoustic signal \(\cdot\)maxfun: maximum
+fundamental frequency measured across acoustic signal \(\cdot\)meandom:
+average of dominant frequency measured across acoustic signal
+\(\cdot\)mindom: minimum of dominant frequency measured across acoustic
+signal \(\cdot\)maxdom: maximum of dominant frequency measured across
+acoustic signal \(\cdot\)dfrange: range of dominant frequency measured
+across acoustic signal \(\cdot\)modindx: modulation index. Calculated as
+the accumulated absolute difference between adjacent measurements of
+fundamental \(\cdot\)frequencies divided by the frequency range
+\(\cdot\)label: male or female
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:/Users/MediaStation/Desktop/Exam/voice.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}    meanfreq        sd    median       Q25       Q75       IQR       skew  \textbackslash{}
+        0  0.059781  0.064241  0.032027  0.015071  0.090193  0.075122  12.863462   
+        1  0.066009  0.067310  0.040229  0.019414  0.092666  0.073252  22.423285   
+        2  0.077316  0.083829  0.036718  0.008701  0.131908  0.123207  30.757155   
+        3  0.151228  0.072111  0.158011  0.096582  0.207955  0.111374   1.232831   
+        4  0.135120  0.079146  0.124656  0.078720  0.206045  0.127325   1.101174   
+        
+                  kurt    sp.ent       sfm  {\ldots}    centroid   meanfun    minfun  \textbackslash{}
+        0   274.402906  0.893369  0.491918  {\ldots}    0.059781  0.084279  0.015702   
+        1   634.613855  0.892193  0.513724  {\ldots}    0.066009  0.107937  0.015826   
+        2  1024.927705  0.846389  0.478905  {\ldots}    0.077316  0.098706  0.015656   
+        3     4.177296  0.963322  0.727232  {\ldots}    0.151228  0.088965  0.017798   
+        4     4.333713  0.971955  0.783568  {\ldots}    0.135120  0.106398  0.016931   
+        
+             maxfun   meandom    mindom    maxdom   dfrange   modindx  label  
+        0  0.275862  0.007812  0.007812  0.007812  0.000000  0.000000   male  
+        1  0.250000  0.009014  0.007812  0.054688  0.046875  0.052632   male  
+        2  0.271186  0.007990  0.007812  0.015625  0.007812  0.046512   male  
+        3  0.250000  0.201497  0.007812  0.562500  0.554688  0.247119   male  
+        4  0.266667  0.712812  0.007812  5.484375  5.476562  0.208274   male  
+        
+        [5 rows x 21 columns]
+\end{Verbatim}
+            
+    \subsection{2. Analyse dataset}\label{analyse-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}u2022}\PY{l+s+s1}{ Размерность массива входных данных: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}u2022}\PY{l+s+s1}{ Список названий столбцов: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}u2022}\PY{l+s+s1}{ Тип переменных в столбцах:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{df}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}u2022}\PY{l+s+s1}{ Проверяем, есть ли незаполненные данные:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{df}\PY{o}{.}\PY{n}{isna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+• Размерность массива входных данных: 
+
+ (3168, 21)
+
+• Список названий столбцов: 
+
+ Index(['meanfreq', 'sd', 'median', 'Q25', 'Q75', 'IQR', 'skew', 'kurt',
+       'sp.ent', 'sfm', 'mode', 'centroid', 'meanfun', 'minfun', 'maxfun',
+       'meandom', 'mindom', 'maxdom', 'dfrange', 'modindx', 'label'],
+      dtype='object')
+
+• Тип переменных в столбцах:
+
+ meanfreq    float64
+sd          float64
+median      float64
+Q25         float64
+Q75         float64
+IQR         float64
+skew        float64
+kurt        float64
+sp.ent      float64
+sfm         float64
+mode        float64
+centroid    float64
+meanfun     float64
+minfun      float64
+maxfun      float64
+meandom     float64
+mindom      float64
+maxdom      float64
+dfrange     float64
+modindx     float64
+label        object
+dtype: object
+
+• Проверяем, есть ли незаполненные данные:
+
+ meanfreq    False
+sd          False
+median      False
+Q25         False
+Q75         False
+IQR         False
+skew        False
+kurt        False
+sp.ent      False
+sfm         False
+mode        False
+centroid    False
+meanfun     False
+minfun      False
+maxfun      False
+meandom     False
+mindom      False
+maxdom      False
+dfrange     False
+modindx     False
+label       False
+dtype: bool
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Кол\PYZhy{}во м/ж записей (значения распределились поровну)}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} male      1584
+        female    1584
+        Name: label, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Кол\PYZhy{}во уникальных значений для м/ж записей}
+        \PY{c+c1}{\PYZsh{} Практически все значения уникальный, кроме: minfun, maxfun, mindow, maxdow, dfrange}
+        \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{nunique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:}         meanfreq    sd  median   Q25   Q75   IQR  skew  kurt  sp.ent   sfm  \textbackslash{}
+        label                                                                        
+        female      1583  1583    1547  1552  1565  1545  1583  1583    1583  1583   
+        male        1583  1583    1562  1557  1532  1535  1583  1583    1583  1583   
+        
+                {\ldots}    centroid  meanfun  minfun  maxfun  meandom  mindom  maxdom  \textbackslash{}
+        label   {\ldots}                                                                 
+        female  {\ldots}        1583     1583     676      64     1543      67     771   
+        male    {\ldots}        1583     1583     573     116     1503      55     743   
+        
+                dfrange  modindx  label  
+        label                            
+        female      791     1560      1  
+        male        748     1528      1  
+        
+        [2 rows x 21 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Все признаки в выборке носят количественный характер, кроме label \PYZhy{} категориальный, поэтому далее преобразуем его в бинарный}
+\end{Verbatim}
+
+
+    \subsubsection{2.1. Preprocessing}\label{preprocessing}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Кодируем пол бинарными значениями, проверяем на транспонированном векторе}
+        \PY{n}{df\PYZus{}label\PYZus{}int} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{factorize}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{df\PYZus{}label\PYZus{}int}\PY{o}{.}\PY{n}{T}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:}        0     1     2     3     4     5     6     7     8     9     {\ldots}   3158  \textbackslash{}
+        label     0     0     0     0     0     0     0     0     0     0  {\ldots}      1   
+        
+               3159  3160  3161  3162  3163  3164  3165  3166  3167  
+        label     1     1     1     1     1     1     1     1     1  
+        
+        [1 rows x 3168 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Удаляем последний столбец, содержащий словесное описание пола}
+        \PY{n}{df\PYZus{}except\PYZus{}label} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{df\PYZus{}except\PYZus{}label}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:}    meanfreq        sd    median       Q25       Q75       IQR       skew  \textbackslash{}
+        0  0.059781  0.064241  0.032027  0.015071  0.090193  0.075122  12.863462   
+        1  0.066009  0.067310  0.040229  0.019414  0.092666  0.073252  22.423285   
+        2  0.077316  0.083829  0.036718  0.008701  0.131908  0.123207  30.757155   
+        3  0.151228  0.072111  0.158011  0.096582  0.207955  0.111374   1.232831   
+        4  0.135120  0.079146  0.124656  0.078720  0.206045  0.127325   1.101174   
+        
+                  kurt    sp.ent       sfm      mode  centroid   meanfun    minfun  \textbackslash{}
+        0   274.402906  0.893369  0.491918  0.000000  0.059781  0.084279  0.015702   
+        1   634.613855  0.892193  0.513724  0.000000  0.066009  0.107937  0.015826   
+        2  1024.927705  0.846389  0.478905  0.000000  0.077316  0.098706  0.015656   
+        3     4.177296  0.963322  0.727232  0.083878  0.151228  0.088965  0.017798   
+        4     4.333713  0.971955  0.783568  0.104261  0.135120  0.106398  0.016931   
+        
+             maxfun   meandom    mindom    maxdom   dfrange   modindx  
+        0  0.275862  0.007812  0.007812  0.007812  0.000000  0.000000  
+        1  0.250000  0.009014  0.007812  0.054688  0.046875  0.052632  
+        2  0.271186  0.007990  0.007812  0.015625  0.007812  0.046512  
+        3  0.250000  0.201497  0.007812  0.562500  0.554688  0.247119  
+        4  0.266667  0.712812  0.007812  5.484375  5.476562  0.208274  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Соединяем наши массивы обратно в один }
+         \PY{n}{df\PYZus{}handle} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{df\PYZus{}except\PYZus{}label}\PY{p}{,} \PY{n}{df\PYZus{}label\PYZus{}int}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{df\PYZus{}handle}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}    meanfreq        sd    median       Q25       Q75       IQR       skew  \textbackslash{}
+         0  0.059781  0.064241  0.032027  0.015071  0.090193  0.075122  12.863462   
+         1  0.066009  0.067310  0.040229  0.019414  0.092666  0.073252  22.423285   
+         2  0.077316  0.083829  0.036718  0.008701  0.131908  0.123207  30.757155   
+         3  0.151228  0.072111  0.158011  0.096582  0.207955  0.111374   1.232831   
+         4  0.135120  0.079146  0.124656  0.078720  0.206045  0.127325   1.101174   
+         
+                   kurt    sp.ent       sfm  {\ldots}    centroid   meanfun    minfun  \textbackslash{}
+         0   274.402906  0.893369  0.491918  {\ldots}    0.059781  0.084279  0.015702   
+         1   634.613855  0.892193  0.513724  {\ldots}    0.066009  0.107937  0.015826   
+         2  1024.927705  0.846389  0.478905  {\ldots}    0.077316  0.098706  0.015656   
+         3     4.177296  0.963322  0.727232  {\ldots}    0.151228  0.088965  0.017798   
+         4     4.333713  0.971955  0.783568  {\ldots}    0.135120  0.106398  0.016931   
+         
+              maxfun   meandom    mindom    maxdom   dfrange   modindx  label  
+         0  0.275862  0.007812  0.007812  0.007812  0.000000  0.000000      0  
+         1  0.250000  0.009014  0.007812  0.054688  0.046875  0.052632      0  
+         2  0.271186  0.007990  0.007812  0.015625  0.007812  0.046512      0  
+         3  0.250000  0.201497  0.007812  0.562500  0.554688  0.247119      0  
+         4  0.266667  0.712812  0.007812  5.484375  5.476562  0.208274      0  
+         
+         [5 rows x 21 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Проверяем последние строки массива, что там признак label = 1 (female)}
+         \PY{n}{df\PYZus{}handle}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:}       meanfreq        sd    median       Q25       Q75       IQR      skew  \textbackslash{}
+         3163  0.131884  0.084734  0.153707  0.049285  0.201144  0.151859  1.762129   
+         3164  0.116221  0.089221  0.076758  0.042718  0.204911  0.162193  0.693730   
+         3165  0.142056  0.095798  0.183731  0.033424  0.224360  0.190936  1.876502   
+         3166  0.143659  0.090628  0.184976  0.043508  0.219943  0.176435  1.591065   
+         3167  0.165509  0.092884  0.183044  0.070072  0.250827  0.180756  1.705029   
+         
+                   kurt    sp.ent       sfm  {\ldots}    centroid   meanfun    minfun  \textbackslash{}
+         3163  6.630383  0.962934  0.763182  {\ldots}    0.131884  0.182790  0.083770   
+         3164  2.503954  0.960716  0.709570  {\ldots}    0.116221  0.188980  0.034409   
+         3165  6.604509  0.946854  0.654196  {\ldots}    0.142056  0.209918  0.039506   
+         3166  5.388298  0.950436  0.675470  {\ldots}    0.143659  0.172375  0.034483   
+         3167  5.769115  0.938829  0.601529  {\ldots}    0.165509  0.185607  0.062257   
+         
+                 maxfun   meandom    mindom    maxdom   dfrange   modindx  label  
+         3163  0.262295  0.832899  0.007812  4.210938  4.203125  0.161929      1  
+         3164  0.275862  0.909856  0.039062  3.679688  3.640625  0.277897      1  
+         3165  0.275862  0.494271  0.007812  2.937500  2.929688  0.194759      1  
+         3166  0.250000  0.791360  0.007812  3.593750  3.585938  0.311002      1  
+         3167  0.271186  0.227022  0.007812  0.554688  0.546875  0.350000      1  
+         
+         [5 rows x 21 columns]
+\end{Verbatim}
+            
+    \subsubsection{2.2. Visualization dataset}\label{visualization-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} print(plt.style.available)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ggplot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Делим выборку на м/ж}
+         \PY{n}{mask} \PY{o}{=} \PY{n}{df\PYZus{}handle}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}
+         \PY{n}{male} \PY{o}{=} \PY{n}{df\PYZus{}handle}\PY{p}{[}\PY{n}{mask}\PY{p}{]}
+         \PY{n}{female} \PY{o}{=} \PY{n}{df\PYZus{}handle}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{mask}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Посмотрим на признаки и убедимся, что пропусков ни в одном из них нет – везде по 1584 записи}
+         \PY{c+c1}{\PYZsh{}male.info()}
+         \PY{c+c1}{\PYZsh{}print(\PYZsq{}\PYZbs{}n\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}female.info()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Большинство признаков выборки имеют слаборазличимую частотность по м/ж как признак meanfreq:}
+         \PY{n}{male}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meanfreq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{female}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meanfreq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Наиболее различимые по м/ж признаки
+ниже:}\label{ux43dux430ux438ux431ux43eux43bux435ux435-ux440ux430ux437ux43bux438ux447ux438ux43cux44bux435-ux43fux43e-ux43cux436-ux43fux440ux438ux437ux43dux430ux43aux438-ux43dux438ux436ux435}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} 1. sd \PYZhy{} standart deviation of frequency}
+         \PY{n}{male}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{female}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} 2. IQR \PYZhy{} interquantile range}
+         \PY{n}{male}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IQR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{female}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IQR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} 3. meanfun \PYZhy{} average of fundamental frequency measured across accoustic signal}
+         \PY{n}{male}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meanfun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{female}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meanfun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Визуализация scatter plot matrix поможет посмотреть на одной картинке, как связаны между собой различные признаки.}
+         \PY{c+c1}{\PYZsh{} На диагонали матрицы графиков расположены гистограммы распределений признака (21 х 21)}
+         \PY{c+c1}{\PYZsh{} Остальные графики — это обычные scatter plots для соответствующих пар признаков}
+         \PY{c+c1}{\PYZsh{}sns.pairplot(df\PYZus{}handle, hue=\PYZsq{}label\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}plt.draw()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Более компактно (по наиболее коррелируемым величинам, см. heatmap ниже):}
+         \PY{n}{sns}\PY{o}{.}\PY{n}{pairplot}\PY{p}{(}\PY{n}{df\PYZus{}handle}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Q25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IQR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{kurt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sfm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dfrange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meanfun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Посчитаем корреляцию количественных
+признаков}\label{ux43fux43eux441ux447ux438ux442ux430ux435ux43c-ux43aux43eux440ux440ux435ux43bux44fux446ux438ux44e-ux43aux43eux43bux438ux447ux435ux441ux442ux432ux435ux43dux43dux44bux445-ux43fux440ux438ux437ux43dux430ux43aux43eux432}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} Чем светлее (ближе к 1) коэффициент корреляции, тем больше зависимость между велечинами}
+         \PY{c+c1}{\PYZsh{} Коэффициент корреляции между количественными признаками по полу практически не различим (жен. чуть сильнее)}
+         \PY{n}{corr\PYZus{}matrix} \PY{o}{=} \PY{n}{df\PYZus{}handle}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+         \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{corr\PYZus{}matrix}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.1f}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{linewidths}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} Наиболее сильно коррелируют между собой: skew/kurt; centroid/meanfreq; dfrange/maxdom}
+         \PY{c+c1}{\PYZsh{} Поэтому можно оставить для дальнейшего анализа только 3 признака из перечисленных выше с учетом бинарного признака label:}
+         \PY{n}{cor\PYZus{}features} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n}{df\PYZus{}handle}\PY{o}{.}\PY{n}{columns}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{set}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{kurt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dfrange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{df\PYZus{}handle}\PY{p}{[}\PY{n}{cor\PYZus{}features}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{draw}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} Как было видно ранее из графиков, признаки maxfun, mindom, minfun, skew можно не рассматривать из\PYZhy{}за их \PYZdq{}выбросов\PYZdq{}}
+         \PY{c+c1}{\PYZsh{} По нормальному закону распределены: meanfreq, meanfun, median, Q25, Q75, sp.ent. Остальные \PYZhy{} ближе к Пуассоновскому.}
+         \PY{c+c1}{\PYZsh{} Т.к. по половому признаку более различны записи по признакам: meanfun/sd/IQR, \PYZhy{} и IQR коррелирует с sd,}
+         \PY{c+c1}{\PYZsh{} а закон распределения больше похож на нормальный у признака meanfun, то ключевыми признаками будут: meanfun и sd.}
+         \PY{c+c1}{\PYZsh{} + kurt/skew, т.к. по нему более четко прослеживается граница (см. график sparse\PYZus{}matrix на seaborn, но неоднозначно)}
+\end{Verbatim}
+
+
+    \subsection{3. Build model}\label{build-model}
+
+    \subsubsection{Logistic regression}\label{logistic-regression}
+
+    Перед нами данные, соответствующие задаче бинарной классификации. В этом
+случае прогноз получают с помощью формулы:
+
+\[ y = w[0]*x[0] + w[1]*x[1] + ... + w[p]*x[p]+ b > 0 \]
+
+В качестве прогнозируемого значения задаем порог, равный нулю. Если
+значение функции меньше нуля, то мы прогнозируем класс -1, и, наоборот.
+Бинарнй линейный классификатор - это классификатор, который разделяет
+два класса с помощью линии, плоскости или гиперплоскости.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{X} \PY{o}{=} \PY{n}{df\PYZus{}except\PYZus{}label}
+         
+         \PY{n}{df}\PY{o}{.}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1} \PY{k}{if} \PY{n}{each} \PY{o}{==}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{female}\PY{l+s+s2}{\PYZdq{}} \PY{k}{else} \PY{l+m+mi}{0} \PY{k}{for} \PY{n}{each} \PY{o+ow}{in} \PY{n}{df}\PY{o}{.}\PY{n}{label}\PY{p}{]}
+         \PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{label}\PY{o}{.}\PY{n}{values}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} Посмотрим на минимальные и максимальные значения признаков}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Min of features:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Max of features:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Min of features:
+ meanfreq    0.039363
+sd          0.018363
+median      0.010975
+Q25         0.000229
+Q75         0.042946
+IQR         0.014558
+skew        0.141735
+kurt        2.068455
+sp.ent      0.738651
+sfm         0.036876
+mode        0.000000
+centroid    0.039363
+meanfun     0.055565
+minfun      0.009775
+maxfun      0.103093
+meandom     0.007812
+mindom      0.004883
+maxdom      0.007812
+dfrange     0.000000
+modindx     0.000000
+dtype: float64
+
+Max of features:
+ meanfreq       0.251124
+sd             0.115273
+median         0.261224
+Q25            0.247347
+Q75            0.273469
+IQR            0.252225
+skew          34.725453
+kurt        1309.612887
+sp.ent         0.981997
+sfm            0.842936
+mode           0.280000
+centroid       0.251124
+meanfun        0.237636
+minfun         0.204082
+maxfun         0.279114
+meandom        2.957682
+mindom         0.458984
+maxdom        21.867188
+dfrange       21.843750
+modindx        0.932374
+dtype: float64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} Из\PYZhy{}за большого разброса по некоторым признакам, нормализуем признаки}
+         \PY{n}{X\PYZus{}norm} \PY{o}{=} \PY{p}{(}\PY{n}{X} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{X}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{values}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{X\PYZus{}norm}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} (3168, 20)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} Разобьем матрицу признаков и целевой вектор на обучающую и тестовую выборки}
+         \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X\PYZus{}norm}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} Транспонируем матрицы/вектора}
+         \PY{n}{x\PYZus{}train} \PY{o}{=} \PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{T}
+         \PY{n}{x\PYZus{}test} \PY{o}{=} \PY{n}{x\PYZus{}test}\PY{o}{.}\PY{n}{T}
+         \PY{n}{y\PYZus{}train} \PY{o}{=} \PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{T}
+         \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{T}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}train shape:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}test shape:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{x\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZus{}train shape:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZus{}test shape:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+x\_train shape: (20, 2692)
+x\_test shape: (20, 476)
+y\_train shape: (2692,)
+y\_test shape: (476,)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} Инициализируем параметры функции, описанной выше и зададим сигмоиную функцию для сглаживания прогнозируемой величины}
+         \PY{c+c1}{\PYZsh{} (логистическое уравнение или уравнение Ферхюльста)}
+         \PY{k}{def} \PY{n+nf}{initialize\PYZus{}weights\PYZus{}and\PYZus{}bias}\PY{p}{(}\PY{n}{dimension}\PY{p}{)}\PY{p}{:}
+             \PY{n}{w} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{full}\PY{p}{(}\PY{p}{(}\PY{n}{dimension}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+             \PY{n}{b} \PY{o}{=} \PY{l+m+mf}{0.0}
+             \PY{k}{return} \PY{n}{w}\PY{p}{,} \PY{n}{b}
+         \PY{k}{def} \PY{n+nf}{sigmoid}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:}
+             \PY{n}{y\PYZus{}head} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{z}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{y\PYZus{}head}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{\PYZsh{} Создадим методы прямого/обратного распространения ошибки (функцию потерь)}
+         \PY{k}{def} \PY{n+nf}{forward\PYZus{}backward\PYZus{}propagation}\PY{p}{(}\PY{n}{w}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} forward propagation}
+             \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{w}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{x\PYZus{}train}\PY{p}{)} \PY{o}{+} \PY{n}{b}
+             \PY{n}{y\PYZus{}head} \PY{o}{=} \PY{n}{sigmoid}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+             \PY{n}{loss} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}train}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{y\PYZus{}head}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}train}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}head}\PY{p}{)}
+             \PY{n}{cost} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{loss}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}                                 
+             \PY{c+c1}{\PYZsh{} x\PYZus{}train.shape[1]  is for scaling}
+             
+             \PY{c+c1}{\PYZsh{} backward propagation}
+             \PY{n}{derivative\PYZus{}weight} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,}\PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}head} \PY{o}{\PYZhy{}} \PY{n}{y\PYZus{}train}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} 
+             \PY{n}{derivative\PYZus{}bias} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{y\PYZus{}head} \PY{o}{\PYZhy{}} \PY{n}{y\PYZus{}train}\PY{p}{)} \PY{o}{/} \PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}                 
+             \PY{n}{gradients} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{derivative\PYZus{}weight}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{derivative\PYZus{}weight}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{derivative\PYZus{}bias}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{derivative\PYZus{}bias}\PY{p}{\PYZcb{}}
+             
+             \PY{k}{return} \PY{n}{cost}\PY{p}{,} \PY{n}{gradients}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} Обновим обучающие параметры модели}
+         \PY{k}{def} \PY{n+nf}{update}\PY{p}{(}\PY{n}{w}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{learning\PYZus{}rate}\PY{p}{,} \PY{n}{number\PYZus{}of\PYZus{}iterarion}\PY{p}{)}\PY{p}{:}
+             \PY{n}{cost\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{cost\PYZus{}list2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}of\PYZus{}iterarion}\PY{p}{)}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} Проводим расчет forward\PYZhy{}backward propagation и находим cost и gradients}
+                 \PY{n}{cost}\PY{p}{,} \PY{n}{gradients} \PY{o}{=} \PY{n}{forward\PYZus{}backward\PYZus{}propagation}\PY{p}{(}\PY{n}{w}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+                 \PY{n}{cost\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cost}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{} Обновялем веса (w) и свободный коэффициент (b)}
+                 \PY{n}{w} \PY{o}{=} \PY{n}{w} \PY{o}{\PYZhy{}} \PY{n}{learning\PYZus{}rate} \PY{o}{*} \PY{n}{gradients}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{derivative\PYZus{}weight}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+                 \PY{n}{b} \PY{o}{=} \PY{n}{b} \PY{o}{\PYZhy{}} \PY{n}{learning\PYZus{}rate} \PY{o}{*} \PY{n}{gradients}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{derivative\PYZus{}bias}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+                 \PY{k}{if} \PY{n}{i} \PY{o}{\PYZpc{}} \PY{l+m+mi}{10} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                     \PY{n}{cost\PYZus{}list2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cost}\PY{p}{)}
+                     \PY{n}{index}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cost after iteration }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{cost}\PY{p}{)}\PY{p}{)}
+                                 
+             \PY{c+c1}{\PYZsh{} Обновляем параметры модели (w, b)}
+             \PY{n}{parameters} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{weight}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{w}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bias}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{b}\PY{p}{\PYZcb{}}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{index}\PY{p}{,} \PY{n}{cost\PYZus{}list2}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{index}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vertical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of iterarion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cost}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{parameters}\PY{p}{,} \PY{n}{gradients}\PY{p}{,} \PY{n}{cost\PYZus{}list}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} Проставляем метки класса, в зависимости от принимаемого значения сигмоидной функции}
+         \PY{k}{def} \PY{n+nf}{predict}\PY{p}{(}\PY{n}{w}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{)}\PY{p}{:}
+             \PY{n}{z} \PY{o}{=} \PY{n}{sigmoid}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{w}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{)} \PY{o}{+} \PY{n}{b}\PY{p}{)}
+             \PY{n}{Y\PYZus{}prediction} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} если z больше 0.5, то прогнозируем класс 1 (y\PYZus{}head = 1), иначе ноль (y\PYZus{}head = 0)}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{z}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{i}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mf}{0.5}\PY{p}{:}
+                     \PY{n}{Y\PYZus{}prediction}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{Y\PYZus{}prediction}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+         
+             \PY{k}{return} \PY{n}{Y\PYZus{}prediction}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} Определим функцию логистической регрессии и проверим её на learning\PYZus{}rate = 1, num\PYZus{}iterations = 300}
+         \PY{k}{def} \PY{n+nf}{logistic\PYZus{}regression}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{learning\PYZus{}rate}\PY{p}{,} \PY{n}{num\PYZus{}iterations}\PY{p}{)}\PY{p}{:}
+             \PY{n}{dimension} \PY{o}{=}  \PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}  \PY{c+c1}{\PYZsh{} равно 20, согласно размерности вектора признаков}
+             \PY{n}{w}\PY{p}{,} \PY{n}{b} \PY{o}{=} \PY{n}{initialize\PYZus{}weights\PYZus{}and\PYZus{}bias}\PY{p}{(}\PY{n}{dimension}\PY{p}{)}
+             \PY{n}{parameters}\PY{p}{,} \PY{n}{gradients}\PY{p}{,} \PY{n}{cost\PYZus{}list} \PY{o}{=} \PY{n}{update}\PY{p}{(}\PY{n}{w}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{learning\PYZus{}rate}\PY{p}{,} \PY{n}{num\PYZus{}iterations}\PY{p}{)}
+             
+             \PY{n}{y\PYZus{}prediction\PYZus{}test} \PY{o}{=} \PY{n}{predict}\PY{p}{(}\PY{n}{parameters}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{weight}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{parameters}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bias}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{)}
+         
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{test accuracy: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{y\PYZus{}prediction\PYZus{}test} \PY{o}{\PYZhy{}} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{logistic\PYZus{}regression}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{learning\PYZus{}rate} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{num\PYZus{}iterations} \PY{o}{=} \PY{l+m+mi}{300}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cost after iteration 0: 0.692736
+Cost after iteration 10: 0.570231
+Cost after iteration 20: 0.510444
+Cost after iteration 30: 0.471619
+Cost after iteration 40: 0.442082
+Cost after iteration 50: 0.417778
+Cost after iteration 60: 0.396971
+Cost after iteration 70: 0.378769
+Cost after iteration 80: 0.362633
+Cost after iteration 90: 0.348199
+Cost after iteration 100: 0.335201
+Cost after iteration 110: 0.323428
+Cost after iteration 120: 0.312715
+Cost after iteration 130: 0.302923
+Cost after iteration 140: 0.293940
+Cost after iteration 150: 0.285669
+Cost after iteration 160: 0.278028
+Cost after iteration 170: 0.270949
+Cost after iteration 180: 0.264371
+Cost after iteration 190: 0.258244
+Cost after iteration 200: 0.252523
+Cost after iteration 210: 0.247169
+Cost after iteration 220: 0.242147
+Cost after iteration 230: 0.237429
+Cost after iteration 240: 0.232986
+Cost after iteration 250: 0.228797
+Cost after iteration 260: 0.224839
+Cost after iteration 270: 0.221095
+Cost after iteration 280: 0.217548
+Cost after iteration 290: 0.214182
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+test accuracy: 96.84873949579831 \%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{logistic\PYZus{}regression}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{learning\PYZus{}rate} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{num\PYZus{}iterations} \PY{o}{=} \PY{l+m+mi}{200}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cost after iteration 0: 0.692736
+Cost after iteration 10: 1.758971
+Cost after iteration 20: 0.910826
+Cost after iteration 30: 0.608990
+Cost after iteration 40: 0.503279
+Cost after iteration 50: 0.406002
+Cost after iteration 60: 0.321540
+Cost after iteration 70: 0.260185
+Cost after iteration 80: 0.221096
+Cost after iteration 90: 0.201651
+Cost after iteration 100: 0.192338
+Cost after iteration 110: 0.185782
+Cost after iteration 120: 0.180128
+Cost after iteration 130: 0.175106
+Cost after iteration 140: 0.170608
+Cost after iteration 150: 0.166555
+Cost after iteration 160: 0.162881
+Cost after iteration 170: 0.159537
+Cost after iteration 180: 0.156478
+Cost after iteration 190: 0.153670
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_46_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+test accuracy: 97.6890756302521 \%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{logistic\PYZus{}regression}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{learning\PYZus{}rate} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{num\PYZus{}iterations} \PY{o}{=} \PY{l+m+mi}{300}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cost after iteration 0: 0.692736
+Cost after iteration 10: 1.005434
+Cost after iteration 20: 0.616500
+Cost after iteration 30: 0.439932
+Cost after iteration 40: 0.366578
+Cost after iteration 50: 0.329188
+Cost after iteration 60: 0.306164
+Cost after iteration 70: 0.288343
+Cost after iteration 80: 0.273280
+Cost after iteration 90: 0.260302
+Cost after iteration 100: 0.248999
+Cost after iteration 110: 0.239065
+Cost after iteration 120: 0.230266
+Cost after iteration 130: 0.222421
+Cost after iteration 140: 0.215383
+Cost after iteration 150: 0.209034
+Cost after iteration 160: 0.203280
+Cost after iteration 170: 0.198041
+Cost after iteration 180: 0.193252
+Cost after iteration 190: 0.188857
+Cost after iteration 200: 0.184811
+Cost after iteration 210: 0.181073
+Cost after iteration 220: 0.177610
+Cost after iteration 230: 0.174393
+Cost after iteration 240: 0.171397
+Cost after iteration 250: 0.168600
+Cost after iteration 260: 0.165982
+Cost after iteration 270: 0.163528
+Cost after iteration 280: 0.161222
+Cost after iteration 290: 0.159052
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+test accuracy: 97.6890756302521 \%
+
+    \end{Verbatim}
+
+    Варьируя различными параметрами скорости обучения (learning\_rate) и
+количеством итераций расчетов (num\_iterations), можно заключчить, что
+оптимальная предсказательная точность модели (accuracy), равная
+97,6890756302521 \% достигается при learning\_rate = 2, num\_iterations
+= 300
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{\PYZsh{} Попробуем решить задачу с помощью sklearn:}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+         \PY{n}{lr} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+         \PY{n}{lr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Test Accuracy : }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{lr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Test Accuracy : 0.976890756302521
+
+    \end{Verbatim}
+
+    Решение классификатора LogisticRegression с дефолтными настройками дает
+тот же результат, что и в предыдущем ручном расчете
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
